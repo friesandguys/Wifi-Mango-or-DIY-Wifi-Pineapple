@@ -1,6 +1,6 @@
-//Most of this is the default MyPortal from https://github.com/hak5/nano-tetra-modules/blob/master/EvilPortal/includes/skeleton/MyPortal.php
-
 <?php namespace evilportal;
+
+//Most of this is the default MyPortal from https://github.com/hak5/nano-tetra-modules/blob/master/EvilPortal/includes/skeleton/MyPortal.php
 
 class MyPortal extends Portal
 {

