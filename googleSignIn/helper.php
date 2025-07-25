@@ -1,5 +1,5 @@
-//this is the default helper from https://github.com/hak5/nano-tetra-modules/blob/master/EvilPortal/includes/skeleton/helper.php
 <?php
+//this is the default helper from https://github.com/hak5/nano-tetra-modules/blob/master/EvilPortal/includes/skeleton/helper.php
 
 /**
  * getClientMac
