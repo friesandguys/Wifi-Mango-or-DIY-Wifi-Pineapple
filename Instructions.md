@@ -12,9 +12,10 @@ Disclaimer: Hak5 (the creators of the WiFi pineapple) are a hardware company. Th
 
 <h3>Setup Instructions:</h3>
 <ol>
-    <li>Start by connecting you USB flash drive and your antennas to the hub. Make note of which component is in each port as this needs to remain consistent throughout usage.</l1> 
+    <li>Start by connecting you USB flash drive and your antennas to the hub. Make note of which component is in each port as this needs to remain consistent throughout usage.
+    <img src="hardware setup.jpeg">
+    </l1> 
 </ol>
-<img src="hardware setup.jpeg">
 
 <h4>Software/Firmware Download</h4>
 Either
@@ -24,10 +25,11 @@ Either
 or
 <ol>
     <li>go to https://gitlab.com/xchwarze/wifi-pineapple-cloner-builds find the router you are using and download the 19.07.7 version – this is the Pineapple cloner</li>
-    <li>go to https://firmware-selector.openwrt.org/ put in the name of the router you are using and select the oldest firmware possible. Since 19.07.7 has been deprecated we want to use something as close as possible. For me that was 19.07.10.</li>
+    <li>go to https://firmware-selector.openwrt.org/ put in the name of the router you are using and select the oldest firmware possible. Since 19.07.7 has been deprecated we want to use something as close as possible. For me that was 19.07.10.
+    <img src="openwrt.png">
+    </li>
 </ol>
 
-<img src="openwrt.png">
 
 <h4>Software/Firmware Instillation</h4>
 <ol>
@@ -52,8 +54,9 @@ or
     <li>Login with the root password you just set</li>
     <li>You are now at the pineapple dashboard, we are going to do a few checks to make sure everything is working properly before continuing</li>
     <li>Go to the advanced tab (its on the left)</li>
-    <li>Then click refresh in the USB & Storage view</li>
-    <img src="USB and storage view.png">
+    <li>Then click refresh in the USB & Storage view
+        <img src="USB and storage view.png">
+    </li>
     <li>You should be able to see both of your antennas with their chipset. Check the chipset is correct, it is not uncommon for devices to come with the wrong chipset. You should also be able to see your flash drive. If anything is not showing up try going to Configuration → General → Factory Reset Pineapple and repeating this section</li>
     <li>If the above step went well, go to Recon and hit scan. Wait for a minute or two and then end the scan and load up the log. The page should become populated with data. See How to Use Wifi Pineapple → Recon for more information.</li>
 </ol>
@@ -61,16 +64,66 @@ or
 <h4>Connecting to the Internet</h4>
 <ol>
     <li>Go to Networking → WiFi Client Mode</li>
-    <li>Here you will need to select an interface. WLAN 1 is used for PineAP (which does all the cool stuff) so change it to WLAN 2 and click scan</li>
-    <img src="scan for wifi.png">
+    <li>Here you will need to select an interface. WLAN 1 is used for PineAP (which does all the cool stuff) so change it to WLAN 2 and click scan
+        <img src="scan for wifi.png">
+    </li>
     <li>Then select your Wifi network, fill in the password and hit connect.
         <img src="connect internet.png">
         Sometimes you have to do it 2-3 times. I don’t know why. So if it doesn't work the first time try it a couple more times. Also note that it can NOT connect to protocol 5 or 6 WiFi networks. This is because the Pineapple Tetra/Nano (the code we are using) was discontinued in 2019. It can see the WiFi 5 and 6 networks, it just can’t interact with them in any way.
         <img src="succesful connection.png">
     </li>
-    <li>To check it is working, go to Dashboard and hit Load Project News!. If it loads in, you have internet. You will need internet for the next section</li>
+    <li>To check it is working, go to Dashboard and hit Load Project News!. If it loads in, you have internet. You will need internet for the next section
+        <img src="news loaded.png">
+    </li>
 </ol>
-<img src="news loaded.png">
+
+<h4>SSHing into the Mango</h4>
+<ol>
+    <li>Go to your terminal and run
+        ```
+        ssh-keygen -R Pineapple
+        ```
+        this only needs to happen the first time (if you do not already have ssh installed you will need to install it)
+    </li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ol>
+
+    1. Go to your terminal and run
+       ssh-keygen -R Pineapple
+       this only needs to happen the first time (if you do not already have ssh installed you will need to install it)
+    2. Then run 
+       ssh root@Pineapple
+       You should now be “in” the Mango
+    3. Now we need to format the USB. Run the command
+       wpc-tools format_sd
+       It will take a while, so don't panic
+    4. Then run
+       cd /sd/
+       To go into the flash drive
+    5. Run
+       ls
+       This will list all the directories currently in the drive. Technically, there shouldn’t be anything since we haven't put anything on it yet. But, sometimes there are some automatically created files. 
+    6. Run
+       rm -r *
+       To delete everything on the drive. Then check by running ls again. If there are still files repeat this step until nothing shows up.
+    7. Then go back a directory by running
+       cd ../
+    8. Then we are going to install the missing packages. This will allow us to do things like continuous scan in recon (instead of starting, stopping and loading) and some other stuff. Run
+       wpc-tools missing_packages
+       This will take a while, don’t panic.
+    9. There will be a few python things that “Can’t list”, this is fine. So long as it says Install Complete! At the bottom we are all good
+    10. To check it works go back to recon and start a continuous scan and hit refresh in the upper right a couple times. If stuff loads in, congratulations, everything is working
+    11. While we are here change the scans location to “/sd/” and hit set since the Mango doesn’t have a lot of internal storage. The scan file is called “recon.db” and will appear in the drive.
 
 
     <li></li>
