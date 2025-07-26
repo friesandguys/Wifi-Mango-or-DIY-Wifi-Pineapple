@@ -80,53 +80,42 @@ or
 <h4>SSHing into the Mango</h4>
 <ol>
     <li>Go to your terminal and run
-        <code>
-        ssh-keygen -R Pineapple
-        </code>
+        <code>ssh-keygen -R Pineapple</code>
         this only needs to happen the first time (if you do not already have ssh installed you will need to install it)
     </li>
-    ```
-    ssh-keygen -R Pineapple
-    ```
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
+    <li>Then run 
+       <code>ssh root@Pineapple</code>
+       You should now be “in” the Mango
+    </li>
+    <li>Now we need to format the USB. Run the command
+       <code>wpc-tools format_sd</code>
+       It will take a while, so don't panic
+    </li>
+    <li>Then run
+       <code>cd /sd/</code>
+       To go into the flash drive
+    </li>
+    <li>Run
+       <code>ls</code>
+       This will list all the directories currently in the drive. Technically, there shouldn’t be anything since we haven't put anything on it yet. But, sometimes there are some automatically created files. 
+    </li>
+    <li>Run
+       <code>rm -r *</code>
+       To delete everything on the drive. Then check by running ls again. If there are still files repeat this step until nothing shows up.
+    </li>
+    <li>Then go back a directory by running
+       <code>cd ../</code>
+    </li>
+    <li>Then we are going to install the missing packages. This will allow us to do things like continuous scan in recon (instead of starting, stopping and loading) and some other stuff. Run
+       <code>wpc-tools missing_packages</code>
+       This will take a while, don’t panic.
+    </li>
+    <li>There will be a few python things that “Can’t list”, this is fine. So long as it says Install Complete! At the bottom we are all good</li>
+    <li>To check it works go back to recon and start a continuous scan and hit refresh in the upper right a couple times. If stuff loads in, congratulations, everything is working</li>
+    <li>While we are here change the scans location to “/sd/” and hit set since the Mango doesn’t have a lot of internal storage. The scan file is called “recon.db” and will appear in the drive.</li>
+
 </ol>
 
-    1. Go to your terminal and run
-       ssh-keygen -R Pineapple
-       this only needs to happen the first time (if you do not already have ssh installed you will need to install it)
-    2. Then run 
-       ssh root@Pineapple
-       You should now be “in” the Mango
-    3. Now we need to format the USB. Run the command
-       wpc-tools format_sd
-       It will take a while, so don't panic
-    4. Then run
-       cd /sd/
-       To go into the flash drive
-    5. Run
-       ls
-       This will list all the directories currently in the drive. Technically, there shouldn’t be anything since we haven't put anything on it yet. But, sometimes there are some automatically created files. 
-    6. Run
-       rm -r *
-       To delete everything on the drive. Then check by running ls again. If there are still files repeat this step until nothing shows up.
-    7. Then go back a directory by running
-       cd ../
-    8. Then we are going to install the missing packages. This will allow us to do things like continuous scan in recon (instead of starting, stopping and loading) and some other stuff. Run
-       wpc-tools missing_packages
-       This will take a while, don’t panic.
-    9. There will be a few python things that “Can’t list”, this is fine. So long as it says Install Complete! At the bottom we are all good
-    10. To check it works go back to recon and start a continuous scan and hit refresh in the upper right a couple times. If stuff loads in, congratulations, everything is working
-    11. While we are here change the scans location to “/sd/” and hit set since the Mango doesn’t have a lot of internal storage. The scan file is called “recon.db” and will appear in the drive.
 
 
     <li></li>
