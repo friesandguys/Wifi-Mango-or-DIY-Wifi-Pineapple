@@ -142,6 +142,23 @@ or
     </li>
 </ol>
 
+<h2>How to Use the WiFi Pineapple</h2>
+<h4>Recon</h4>
+This view is used to passively scan for near-by WiFi signals. It is similar to the Bluetooth week 1 exercise. To use it set scan settings to both, then select start, start PineAP, and hit the refresh button on the right until you see something. Mine looks like this:
+<img src="Recon.png">
+
+The signal is measured in decibels and WPS is just an old security protocol that some devices no longer support. 
+
+SSID stands for Service Set Identifier, it is essentially the name of the WiFi network/access point. On mine you can see Mango_Management, the name of my Mango router. 
+
+MAC stands for Media Access Control. It is an address that identifies your hardware. Your phone, laptop, speakers, etc. all have their own MAC address. For this reason it is also called a hardware address. It is assigned by the hardware vendor according to IEEE standards. Since it can be used to identify devices it is common for devices like phones and computers to hid their real MAC address, this is called spoofing. 
+
+You might notice that Mango_Management appears to have two MAC addresses. This is not the case. The light blue one is the MAC address of the router and the one below it is the MAC address of my laptop. My laptop is listed with Mango_Management because it is connected via WiFi to it. If we stop the scan and then click the arrow next to my laptop’s MAC address we get this view.
+<img src="OUI example.png">
+
+PineAP Filter and PineAP Tracking are simple tools used to help keep track of devices and include or exclude them from particular attacks. You can add MAC addresses to them from this view or by going to their dedicated views on the left. We will go over Deauth in a moment but for now just know the Deauth in this view is not especially useful. 
+
+Then we have OUI. This is why we downloaded the database earlier. The first three pairs of hex numbers in a MAC address are used to identify the hardware vendor, the OUI is a database of these and can be used to help identify a device. In my case 2C:DB:07 is the start of the MAC address. This matches with Intel, which checks out since my laptop is an Intel device. You can also look up MAC addresses manually be going to Network → OUI Lookup.
 
     <li></li>
     <li></li>
