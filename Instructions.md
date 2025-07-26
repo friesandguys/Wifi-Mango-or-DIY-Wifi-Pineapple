@@ -8,8 +8,6 @@ Disclaimer: Hak5 (the creators of the WiFi pineapple) are a hardware company. Th
     <li>2 USB antennas with compatible WiFi chipsets (listed here: https://github.com/SHUR1K-N/wifi-mangoapple-resources#chipsets , I used chipset RT5572)</li>
     <li>a device with an Ethernet port (for sshing into the Mango)</li>
     <li>(optional) a portable power source, otherwise you can just plug it into your computer to power it</li>
-    <li></li>
-    <li></li>
 </ul>
 
 <h3>Setup Instructions:</h3>
@@ -59,3 +57,21 @@ or
     <li>You should be able to see both of your antennas with their chipset. Check the chipset is correct, it is not uncommon for devices to come with the wrong chipset. You should also be able to see your flash drive. If anything is not showing up try going to Configuration → General → Factory Reset Pineapple and repeating this section</li>
     <li>If the above step went well, go to Recon and hit scan. Wait for a minute or two and then end the scan and load up the log. The page should become populated with data. See How to Use Wifi Pineapple → Recon for more information.</li>
 </ol>
+
+<h4>Connecting to the Internet</h4>
+<ol>
+    <li>Go to Networking → WiFi Client Mode</li>
+    <li>Here you will need to select an interface. WLAN 1 is used for PineAP (which does all the cool stuff) so change it to WLAN 2 and click scan</li>
+    <img src="scan for wifi.png">
+    <li>Then select your Wifi network, fill in the password and hit connect.
+        <img src="connect internet.png">
+        Sometimes you have to do it 2-3 times. I don’t know why. So if it doesn't work the first time try it a couple more times. Also note that it can NOT connect to protocol 5 or 6 WiFi networks. This is because the Pineapple Tetra/Nano (the code we are using) was discontinued in 2019. It can see the WiFi 5 and 6 networks, it just can’t interact with them in any way.
+        <img src="succesful connection.png">
+    </li>
+    <li>To check it is working, go to Dashboard and hit Load Project News!. If it loads in, you have internet. You will need internet for the next section</li>
+</ol>
+<img src="news loaded.png">
+
+
+    <li></li>
+    <li></li>
