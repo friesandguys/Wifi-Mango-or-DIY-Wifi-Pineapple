@@ -1,6 +1,10 @@
 Disclaimer: Hak5 (the creators of the WiFi pineapple) are a hardware company. They have their own proprietary firmware but the software is open source, and largely based on other people’s open source tools. Thus, we can bring our own hardware, use OpenWrt as our firmware and port Hak5’s software without stepping on any toes. 
 
 <h3>Equipment:</h3>
+<ul>
+    <li>hello</li>
+    <li>world</li>
+</ul>
 - hello
 - test
 
