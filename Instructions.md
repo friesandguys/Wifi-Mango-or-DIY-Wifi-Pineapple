@@ -116,6 +116,31 @@ or
 
 </ol>
 
+<h4>Extra Stuff</h4>
+<ol>
+    <li>Go to Modules → Manage Modules and select Get Modules. A long list of available modules should appear. The github repos are also availble here: https://github.com/hak5/nano-tetra-modules/tree/master 
+        <img src="get modules.png">
+    </li>
+    <li>You can install whatever modules you want, but for my attack you will need the Death module by whistlemaster and the Evil Portal module by newbi3</li>
+    <li>When you click install it will ask you if you want to install it internally or to SD Card (i.e. the flash drive). I recommend the flash drive. This can easily be changed later by going back the Manage Modules and removing the module and then reinstalling it in your preferred location.
+        <img src="remove modules.png">
+    </li>
+    <li>Some modules require additional dependencies. Simply select the button that installs them and again, I recommend putting them on the flash drive.</li>
+    <li>Go to Networking and select Download OUI Database. This will help us to identify devices by their mac address. For further detail check out “How to Use Wifi Pineapple”.</li>
+    <li>Turn off the Mango (simply disconnect it from the power) and plug the USB flash drive directly into your computer.</li>
+    <li>Then go to https://github.com/Anneliese-Menday/Wifi-Mango-or-DIY-Wifi-Pineapple and download the googleSignIn folder</li>
+    <li>Then copy the downloaded folder and all of its contents into the portals folder of the USB flash drive. This will require admin/sudo privileges. The following steps are for an Ubuntu based system, if you are using something else the process will be different.
+        <ol>
+            <li>Open the terminal</li>
+            <li>Run
+                <code>sudo cp -a /source/ . /dest/</code>
+                where source is the googleSignIn folder path including /googleSignIn at the end and /dest/ is /your USB name/portals/</li>
+            <li>it will prompt you to fill in your password</li>
+            <li>Check it has copied over properly</li>
+            <li>Eject drive safely and plug it back into the USB hub in the SAME port it was plugged into before</li>
+        </ol>
+    </li>
+</ol>
 
 
     <li></li>
