@@ -235,5 +235,5 @@ If you want to create your own portals you can do so by typing a name in the por
     <li>Direct traffic to my fake google sign in page</li>
     <li>Steal people’s google sign in</li>
 </ol>
-Below are some photos of the fake google sign in page on Chrome, Firefox and an android phone.
+Below is a picture of the fake google sign in page on an android phone.
 <img src="android fake google log in.png">
