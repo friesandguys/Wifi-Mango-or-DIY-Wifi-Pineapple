@@ -85,6 +85,9 @@ or
         ```
         this only needs to happen the first time (if you do not already have ssh installed you will need to install it)
     </li>
+    ```
+    ssh-keygen -R Pineapple
+    ```
     <li></li>
     <li></li>
     <li></li>
