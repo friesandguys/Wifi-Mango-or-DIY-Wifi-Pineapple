@@ -16,22 +16,20 @@ Disclaimer: Hak5 (the creators of the WiFi pineapple) are a hardware company. Th
 <ol>
     <li>Start by connecting you USB flash drive and your antennas to the hub. Make note of which component is in each port as this needs to remain consistent throughout usage.</l1> 
 </ol>
-![alt text](<hardware setup.jpeg>)
+<img src="hardware setup.jpeg">
 
 <h4>Software/Firmware Download</h4>
 Either
 <ol>
     <li>go to https://github.com/Anneliese-Menday/Wifi-Mango-or-DIY-Wifi-Pineapple and download gl-mt300n-v2-universal-sysupgrade.bin (the pineapple port) and openwrt-19.07.10-ramips-mt76x8-gl-mt300n-v2-squashfs-sysupgrade.bin</li>
 </ol>
-
 or
-
 <ol>
     <li>go to https://gitlab.com/xchwarze/wifi-pineapple-cloner-builds find the router you are using and download the 19.07.7 version – this is the Pineapple cloner</li>
     <li>go to https://firmware-selector.openwrt.org/ put in the name of the router you are using and select the oldest firmware possible. Since 19.07.7 has been deprecated we want to use something as close as possible. For me that was 19.07.10.</li>
 </ol>
 
-![alt text](openwrt.png)
+<img src="openwrt.png">
 
 <h4>Software/Firmware Instillation</h4>
 <ol>
