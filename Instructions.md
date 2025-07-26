@@ -80,9 +80,9 @@ or
 <h4>SSHing into the Mango</h4>
 <ol>
     <li>Go to your terminal and run
-        ```
+        <code>
         ssh-keygen -R Pineapple
-        ```
+        </code>
         this only needs to happen the first time (if you do not already have ssh installed you will need to install it)
     </li>
     ```
