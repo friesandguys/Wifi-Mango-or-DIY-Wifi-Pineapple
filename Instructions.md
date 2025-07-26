@@ -13,7 +13,7 @@ Disclaimer: Hak5 (the creators of the WiFi pineapple) are a hardware company. Th
 <h3>Setup Instructions:</h3>
 <ol>
     <li>Start by connecting your USB flash drive and your antennas to the hub. Make note of which component is in each port, as this needs to remain consistent throughout usage.
-    <img src="hardware setup.jpeg">
+    <img src="images/hardware setup.jpeg">
     </l1> 
 </ol>
 
@@ -26,7 +26,7 @@ or
 <ol>
     <li>go to https://gitlab.com/xchwarze/wifi-pineapple-cloner-builds find the router you are using and download the 19.07.7 version – this is the Pineapple cloner</li>
     <li>go to https://firmware-selector.openwrt.org/ put in the name of the router you are using, and select the oldest firmware possible. Since 19.07.7 has been deprecated, we want to use something as close as possible. For me, that was 19.07.10.
-    <img src="openwrt.png">
+    <img src="images/openwrt.png">
     </li>
 </ol>
 
@@ -55,7 +55,7 @@ or
     <li>You are now at the pineapple dashboard. We are going to do a few checks to make sure everything is working properly before continuing</li>
     <li>Go to the advanced tab (it's on the left)</li>
     <li>Then click refresh in the USB & Storage view
-        <img src="USB and storage view.png">
+        <img src="images/USB and storage view.png">
     </li>
     <li>You should be able to see both of your antennas with their chipset. Check the chipset is correct; it is not uncommon for devices to come with the wrong chipset. You should also be able to see your flash drive. If anything is not showing up, try going to Configuration → General → Factory Reset Pineapple and repeating this section</li>
     <li>If the above step went well, go to Recon and hit scan. Wait for a minute or two and then end the scan and load up the log. The page should become populated with data. See How to Use Wifi Pineapple → Recon for more information.</li>
@@ -65,15 +65,15 @@ or
 <ol>
     <li>Go to Networking → WiFi Client Mode</li>
     <li>Here you will need to select an interface. WLAN 1 is used for PineAP (which does all the cool stuff), so change it to WLAN 2 and click scan
-        <img src="scan for wifi.png">
+        <img src="images/scan for wifi.png">
     </li>
     <li>Then select your Wifi network, fill in the password and hit connect.
-        <img src="connect internet.png">
+        <img src="images/connect internet.png">
         Sometimes you have to do it 2-3 times. I don’t know why. So if it doesn't work the first tim,e try it a couple more times. Also note that it can NOT connect to protocol 5 or 6 WiFi networks. This is because the Pineapple Tetra/Nano (the code we are using) was discontinued in 2019. It can see the WiFi 5 and 6 networks, it just can’t interact with them in any way.
-        <img src="succesful connection.png">
+        <img src="images/succesful connection.png">
     </li>
     <li>To check it is working, go to Dashboard and hit Load Project News!. If it loads in, you have internet. You will need internet for the next section
-        <img src="news loaded.png">
+        <img src="images/news loaded.png">
     </li>
 </ol>
 
@@ -119,11 +119,11 @@ or
 <h4>Extra Stuff</h4>
 <ol>
     <li>Go to Modules → Manage Modules and select Get Modules. A long list of available modules should appear. The github repos are also availble here: https://github.com/hak5/nano-tetra-modules/tree/master 
-        <img src="get modules.png">
+        <img src="images/get modules.png">
     </li>
     <li>You can install whatever modules you want, but for my attack, you will need the Death module by whistlemaster and the Evil Portal module by newbi3</li>
     <li>When you click install, it will ask you if you want to install it internally or to SD Card (i.e. the flash drive). I recommend the flash drive. This can easily be changed later by going back the Manage Modules and removing the module and then reinstalling it in your preferred location.
-        <img src="remove modules.png">
+        <img src="images/remove modules.png">
     </li>
     <li>Some modules require additional dependencies. Simply select the button that installs them, and again, I recommend putting them on the flash drive.</li>
     <li>Go to Networking and select Download OUI Database. This will help us identify devices by their MAC address. For further detail, check out “How to Use Wifi Pineapple”.</li>
@@ -145,7 +145,7 @@ or
 <h2>How to Use the WiFi Pineapple</h2>
 <h4>Recon</h4>
 This view is used to passively scan for near-by WiFi signals. It is similar to the Bluetooth week 1 exercise. To use it, set scan settings to both, then select start, start PineAP, and hit the refresh button on the right until you see something. Mine looks like this:
-<img src="Recon.png">
+<img src="images/Recon.png">
 
 The signal is measured in decibels, and WPS is just an old security protocol that some devices no longer support. 
 
@@ -154,7 +154,7 @@ SSID stands for Service Set Identifier; it is essentially the name of the WiFi n
 MAC stands for Media Access Control. It is an address that identifies your hardware. Your phone, laptop, speakers, etc., all have their own MAC address. For this reason, it is also called a hardware address. It is assigned by the hardware vendor according to IEEE standards. Since it can be used to identify devices, it is common for devices like phones and computers to hide their real MAC address, this is called spoofing. 
 
 You might notice that Mango_Management appears to have two MAC addresses. This is not the case. The light blue one is the MAC address of the router, and the one below it is the MAC address of my laptop. My laptop is listed with Mango_Management because it is connected via WiFi to it. If we stop the scan and then click the arrow next to my laptop’s MAC address, we get this view.
-<img src="OUI example.png">
+<img src="images/OUI example.png">
 
 PineAP Filter and PineAP Tracking are simple tools used to help keep track of devices and include or exclude them from particular attacks. You can add MAC addresses to them from this view or by going to their dedicated views on the left. We will go over Deauth in a moment, but for now, know the Deauth in this view is not especially useful. 
 
@@ -199,7 +199,7 @@ This is why the deauth button in the recon view isn't very useful. In all likeli
 It is VERY IMPORTANT to note here that Deauth attacks are super illegal to do to people without their consent. Due to this, you must only ever use black list mode (i.e. the mode where you list the networks you want to attack) and not white list mode (i.e. the mode where you attack everyone except the people on your list).
 
 Below is a picture of the Deauth module with all of its sections expanded. If it isn’t showing up, make sure you have clicked to install the dependencies and then refresh.
-<img src="deauth default view.png">
+<img src="images/deauth default view.png">
 
 In the setting section, we need to make sure it is set to blacklist mode. We don’t need to specify a speed, so just leave it as false. We do need to specify a channel. The channel should match the channel of the access point we are trying to block. You can find out the access points' channels in the recon view.
 
@@ -215,7 +215,7 @@ If you have ever accessed free WiFi at a hotel or shopping centre, you may have 
 When a person attempts to connect to your Mango, they will be redirected to the sign in page you will setup using Evil Portal, then, when they log in, you will save the credentials they used. This is not in itself “evil”. The “Evil” part of the name comes from you making your portal look like, say, the google sign in page. So instead of giving you their email address and calling it a day, they give you the password to their Google account.
 
 Let’s go over how to use the module. You should have already downloaded my google sign in and put it on the flash drive of your Mango. If you have the Evil portal module should look like the image below. If you haven’t already added it, go to step 7 of Extra Stuff.
-<img src="EvilportalOff.png">
+<img src="images/EvilportalOff.png">
 
 In the white list, you can add the MAC addresses of devices that never need to authenticate themselves through the portal before accessing the internet. Often, the device you are using to control the Mango will be automatically added to this list. You can add and remove any MAC address you like.
 
@@ -236,4 +236,4 @@ If you want to create portals, you can do so by typing a name in the portal name
     <li>Steal people’s google sign in</li>
 </ol>
 Below is a picture of the fake Google sign-in page on an Android phone.
-<img src="android fake google log in.png">
+<img src="images/android fake google log in.png">
