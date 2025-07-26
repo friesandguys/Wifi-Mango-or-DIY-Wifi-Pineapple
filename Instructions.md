@@ -241,7 +241,11 @@ Below is a picture of the fake Google sign-in page on an Android phone.
 
 <h2>References</h2>
 https://www.youtube.com/watch?v=udnxagkSzoA 
-https://github.com/xchwarze/wifi-pineapple-cloner 
+
+https://github.com/xchwarze/wifi-pineapple-cloner
+
 https://docs.gl-inet.com/router/en/4/user_guide/gl-mt300n-v2/ 
+
 https://docs.gl-inet.com/router/en/4/faq/debrick/ 
+
 https://olddocs.hak5.org/wifi-pineapple-6th-gen-nano-tetra
