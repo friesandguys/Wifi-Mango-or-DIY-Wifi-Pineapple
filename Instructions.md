@@ -160,5 +160,80 @@ PineAP Filter and PineAP Tracking are simple tools used to help keep track of de
 
 Then we have OUI. This is why we downloaded the database earlier. The first three pairs of hex numbers in a MAC address are used to identify the hardware vendor, the OUI is a database of these and can be used to help identify a device. In my case 2C:DB:07 is the start of the MAC address. This matches with Intel, which checks out since my laptop is an Intel device. You can also look up MAC addresses manually be going to Network → OUI Lookup.
 
-    <li></li>
-    <li></li>
+<h4>PineAP</h4>
+There’s a lot going on in this view so we will go through each section one at a time. Configuration section first.
+<ul>
+    <li>Allow Associations - controls wether or not other devices can connect to the Mango, for our attack we will want this ticked.</li>
+    <li>Log PineAP Events – controls wether or not events are logged</li>
+    <li>Client Connect Notifications – an event we can tell it to log</li>
+    <li>Client Disconnect Notifications – an event we can tell it to log</li>
+    <li>Capture SSIDs to Pool – SSIDs are WiFi network/Access Point names. When this option is ticked the Mango will scan for nearby access points and collect their SSIDs to the pool. The pool is just a list of these captured SSIDs.</li>
+    <li>Beacon Response – sends target beacons to Client devices in response to the Client devices probe request. We need this ticked for our attack</li>
+    <li>Broadcast SSID pool – broadcasts access points that have the same name as legitimate nearby access points but that actually connect the Client device to the mango. We need this ticked for out attack.</li>
+    <li>PineAP Daemon – for turning PineAP on/off. Can only use WLAN 1.</li>
+</ul>
+I suggest not messing with the other settings unless you know what you are doing. We don’t need to touch them for our attack.
+
+The SSID pool is, as described above, a list of nearby SSIDs. However, you can add your own custom SSIDs and remove SSIDs you don’t want for a more targeted attack. The purpose of the pool is for a more social engineering based attack, it does not itself actually “hack” anything. It is entirely reliant on tricking an unsuspecting user into connecting. 
+
+PineAP enterprise is just a hang over from before it was deprecated. You can just ignore it.
+
+Captured WPA Handshakes does not work with the Mango. Essentially the internal file structure of the Mango is incompatible with this feature. I have not found a solution but it is not necessary for the attack we wish to execute.
+
+Inject Raw Frames is for creating your own data packets to send to devices over WiFi. All data packets in the WiFi protocol are called frames. Beacon Response and Deauth attacks are conducted by sending frames over the network and tricking devices into doing things based on the frame sent. This section allows you to create your own attacks rather than using the pre-made attacks.
+
+<h4>Deauth</h4>
+A Deauth or de-authorisation attack is a frame injection attack whereby we trick a target device into thinking the access point it is connected to no-long wants to connect. To explain lets quickly go over how a client connects to an access point.
+<ol>
+    <li>The access point (e.g. a router) sends out beacon frames. This is essentially advertising the existence of the access point. It includes some information like SSID, protocol, supported data rates, etc. Essentially all the information needed for a client to connect.</li>
+    <li>The client sends out probe requests to access points. It can either send out a general probe to every access point in the vicinity asking “Are there any access points?” or it can send a probe to a specific SSID asking “Are you nearby?”. The access points then respond with all the information in the beacon frame.</li>
+    <li>Once the client has decided who they want to connect to they send an association request and, if successful, receives a positive association response. Essentially “Want to be friends?”, “Yes we can be friends”.</li>
+    <li>The final step is authentication. There are a few different schemes for authentication, the precise type is irrelevant, just know it is required for all access points.</li>
+</ol>
+An access point is entitled to withdraw authentication at any point and disconnect the client. This is what a deauth attack exploits. We create a frame that appears to be coming from the client’s connected access point that more or less says “I don’t want to be friends anymore”, thus tricking the client into disconnecting.
+
+However, there is a problem. Most modern devices have auto-connect to WiFi capabilities. So as soon as it disconnects from the access point it goes through its list of known access points and tries to reconnect to one of them (this can be used to trick the client into connecting to an unsafe WiFi network that has the same SSID as a known safe network), possibly even the one it just disconnected from! So if we want to actually block a client from connecting to a particular access point we must continually send de-authentication frames for the duration we want to block the connection.
+
+This is why the deauth button in the recon view isn't very useful. In all likelihood the client will just immediately reconnect. Enter the Deauth module. This module sends deauth frames continuously, allowing you to actually block the connection.
+
+It is VERY IMPORTANT to note here that Deauth attacks are super illegal to do to people without their consent. Due to this you must only ever use black list mode (i.e. the mode where you list the networks you want to attack) and not white list mode (i.e. the mode where you attack everyone except the people on your list).
+
+Below is a picture of the Deauth module with all of its sections expanded. If it isn’t showing up make sure you have clicked to install the dependencies and then refresh.
+<img src="deauth default view.png">
+
+In the setting section we need to make sure it is set to blacklist mode. We don’t need to specify a speed so just leave it as false. We do need to specify a channel. The channel should match the channel of the access point we are trying to block. You can find out the access points channel in the recon view.
+
+In the editor section we can either scan for nearby access points to add to our list or we can directly type the MAC address of the access point into the Blacklist. Don’t forget to hit save!
+
+Once we have set these two sections up we can start our Deauth attack. If it isn’t working try changing the mdk3 option. Please not that it will not be able to do Deauth attacks on access points running WiFi 5 or 6. They will come up in the scan but it is unable to create frames for those protocols. This isn’t because 5 or 6 have better security, it just hasn’t been updated since 2019. Also note that if you launch a Deauth attack on the access point that the Mango is connected to then the Mango will also be disconnected. The Deauth module targets all devices connected to a particular access point, including the Mango.
+
+<h4>EvilPortal</h4>
+The purpose of an evil portal is to create a realistic looking replica of someone else’s sign in  page (e.g. Google, Facebook, Microsoft, etc.) and then direct traffic towards it, thus tricking people into handing over their credentials. This particular Evil portal module is to capture the credentials of people attempting to access free WiFi.
+
+If you have ever accessed free WiFi at a hotel or shopping centre you may have noticed that before being given access to the internet you are redirected a page that requires you to hand over your email address or phone number, maybe your room number etc. This is the sort of process that is exploited by this module.
+
+When a person attempts to connect to your Mango they will be redirected to the sign in page you will setup using Evil Portal, then, when they log in, you will save the credentials they used. This is not in itself “evil”. The “Evil” part of the name comes from you making your portal look like, say, the google sign in page. So instead of giving you their email address and calling it a day, they give you the password to their google account.
+
+Let’s go over how to use the module. You should have already downloaded my google sign in and put it on the flash drive of your Mango. If you have the Evil portal module should look like the image below. If you haven’t already added it go to step 7 of Extra Stuff.
+<img src="EvilportalOff.png">
+
+In the white list you can add the MAC addresses of devices that never need to authenticate themselves through the portal before accessing the internet. Often the device you are using to control the Mango will be automatically added to this list. You can add and remove any MAC address you like.
+
+The authorised clients list is a list of the MAC addresses of the clients who have already gone through the portal and handed over their sign in details. Again, you can remove clients to make them go through the portal again if you wish.
+
+The Live Preview section will show you what the clients will see when they are redirected to your sign in page.
+
+To activate the GoogleSignIn portal click activate and then click start portal. The captured credentials will be saved temporarily in the logs and permanently on the USB stick in a txt file called googleSignIn.
+
+If you want to create your own portals you can do so by typing a name in the portal name section of the workbench and clicking create on SD card. This will create the default portal which you can then edit to be whatever you want it to be. I don’t recommend writing the code for your web page here as its just a plain text editor. Instead it will be easier to imitate the structure of the googleSignIn folder in something like vscode, create your webpage there, and then follow the instruction given in Extra Stuff step 7 to put it directly on your USB drive.
+
+<h2>My Attack</h2>
+<ol>
+    <li>Recon to find an access point to target</li>
+    <li>Capture SSID of access point to the pool and broadcast them</li>
+    <li>Deauth the real access point</li>
+    <li>Direct traffic to my fake google sign in page</li>
+    <li>Steal people’s google sign in</li>
+</ol>
+Below are some photos of the fake google sign in page on Chrome, Firefox and an android phone.
+<img src="android fake google log in.png">
