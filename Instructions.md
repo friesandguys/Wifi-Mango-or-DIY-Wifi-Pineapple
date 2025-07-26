@@ -43,3 +43,19 @@ or
     <li>This will take about 3 minutes. The page will not updated when completed. Wait for all the LEDs on the Mango to go solid. (The WiFi LED might still be flickering a little, this is okay)</li>
     <li>If you changed the IP address back in step one of this section, you can revert it now/change it back to obtain automatically.</li>
 </ol>
+
+<h4>Initial WiFi Pineapple Setup</h4>
+<ol>
+    <li>Make sure the Mango is connected to your computer via its LAN port and powered on.</li>
+    <li>Go to 172.16.42.1:1471, this is the IP address for the WiFi Pineapple Tetra interface</li>
+    <li>Click get started, then continue</li>
+    <li>The window will change to “Secure Setup”. Plug your USB hub (with the antennas and flash drive connected to it) into the Mango BEFORE clicking the reset button once. The message should go away.</li>
+    <li>Then it will take you to a config page. You need to at least set your root password (again no recovery option other than wiping and restarting). Everything else can be changed later if you want. But, I recommend setting up the management AP, changing the country, and changing the timezone. Scroll to the bottom and check the accept boxes and then click complete setup.</li>
+    <li>Login with the root password you just set</li>
+    <li>You are now at the pineapple dashboard, we are going to do a few checks to make sure everything is working properly before continuing</li>
+    <li>Go to the advanced tab (its on the left)</li>
+    <li>Then click refresh in the USB & Storage view</li>
+    <img src="USB and storage view.png">
+    <li>You should be able to see both of your antennas with their chipset. Check the chipset is correct, it is not uncommon for devices to come with the wrong chipset. You should also be able to see your flash drive. If anything is not showing up try going to Configuration → General → Factory Reset Pineapple and repeating this section</li>
+    <li>If the above step went well, go to Recon and hit scan. Wait for a minute or two and then end the scan and load up the log. The page should become populated with data. See How to Use Wifi Pineapple → Recon for more information.</li>
+</ol>
